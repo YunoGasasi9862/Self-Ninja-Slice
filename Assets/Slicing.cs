@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Slicing : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public bool isCutting;
+    Rigidbody2D rb;
+    Camera cam;
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        cam = Camera.main; //thats all
     }
 
     // Update is called once per frame
@@ -20,5 +23,30 @@ public class Slicing : MonoBehaviour
         {
             StopCutting();
         }
+
+
+        if(isCutting)
+        {
+            UpdateCutting();
+        }
+    }
+
+
+    void UpdateCutting()
+    {
+        Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);  //SCREEN TO WORLD POINT!!
+        rb.position = pos; //new position
+
+    }
+
+    void Startcutting()
+    {
+        isCutting = true;
+    }
+
+    void StopCutting()
+    {
+        isCutting = false;
+
     }
 }
