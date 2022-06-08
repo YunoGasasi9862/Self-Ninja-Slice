@@ -7,10 +7,12 @@ public class Slicing : MonoBehaviour
     public bool isCutting;
     Rigidbody2D rb;
     Camera cam;
+    public CircleCollider2D collider;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main; //thats all
+        collider = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -42,11 +44,13 @@ public class Slicing : MonoBehaviour
     void Startcutting()
     {
         isCutting = true;
+        collider.enabled = true;
     }
 
     void StopCutting()
     {
         isCutting = false;
+        collider.enabled = false;
 
     }
 }
