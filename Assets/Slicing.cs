@@ -7,12 +7,14 @@ public class Slicing : MonoBehaviour
     public bool isCutting;
     Rigidbody2D rb;
     Camera cam;
-    public CircleCollider2D collider;
+    public CircleCollider2D col;
+    public GameObject bladeTrail;
+    GameObject trail;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = Camera.main; //thats all
-        collider = GetComponent<CircleCollider2D>();
+        col = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -44,13 +46,16 @@ public class Slicing : MonoBehaviour
     void Startcutting()
     {
         isCutting = true;
-        collider.enabled = true;
+        col.enabled = true;
+        trail = Instantiate(bladeTrail, transform);
     }
 
     void StopCutting()
     {
         isCutting = false;
-        collider.enabled = false;
+       col.enabled = false;
+        trail.transform.SetParent(null); //remove the trail from the parent!
+        Destroy(trail, 2); //removes that trail, not the prefab!!
 
     }
 }
