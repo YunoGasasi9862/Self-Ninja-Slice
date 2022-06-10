@@ -9,6 +9,8 @@ public class Slicing : MonoBehaviour
     Camera cam;
     public CircleCollider2D col;
     public GameObject bladeTrail;
+    Vector2 previousposition;
+   public float minVelocity = 0.01f;
     GameObject trail;
     void Start()
     {
@@ -33,6 +35,8 @@ public class Slicing : MonoBehaviour
         {
             UpdateCutting();
         }
+
+        
     }
 
 
@@ -41,6 +45,18 @@ public class Slicing : MonoBehaviour
         Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);  //SCREEN TO WORLD POINT!!
         rb.position = pos; //new position
 
+        float velocity = (pos - previousposition).magnitude / Time.deltaTime;
+        if(velocity > minVelocity)
+        {
+            col.enabled = true;
+        }
+        else
+        {
+            col.enabled = false;
+        }
+
+        previousposition = pos; //update it (make it new that is set the previous one to pos :))
+
     }
 
     void Startcutting()
@@ -48,6 +64,7 @@ public class Slicing : MonoBehaviour
         isCutting = true;
         col.enabled = true;
         trail = Instantiate(bladeTrail, transform);
+        previousposition = cam.ScreenToWorldPoint(Input.mousePosition);  //for starting only! if start cutting is hold for the firs time
     }
 
     void StopCutting()
