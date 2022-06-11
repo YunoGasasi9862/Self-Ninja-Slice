@@ -49,8 +49,7 @@ public class Slicing : MonoBehaviour
         if(velocity > minVelocity)
         {
             col.enabled = true;
-        }
-        else
+        }else
         {
             col.enabled = false;
         }
@@ -71,8 +70,9 @@ public class Slicing : MonoBehaviour
     {
         isCutting = false;
        col.enabled = false;
-        trail.transform.SetParent(null); //remove the trail from the parent!
-        Destroy(trail, 2); //removes that trail, not the prefab!!
-
+        //  trail.transform.SetParent(null); //remove the trail from the parent!
+        //  Destroy(trail, 2); //removes that trail, not the prefab!!
+        trail.transform.SetParent(null);
+        Destroy(trail, 2);
     }
 }
