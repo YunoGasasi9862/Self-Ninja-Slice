@@ -8,10 +8,11 @@ public class Fruit : MonoBehaviour
 
     Rigidbody2D rb;
     public GameObject watermelonSliced;
+    public float speed = 10f;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        rb.AddForce(Vector2.up * speed, ForceMode2D.Impulse);  //speed
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
