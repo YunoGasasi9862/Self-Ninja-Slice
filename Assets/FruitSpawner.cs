@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class FruitSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+
+   public Transform[] SpawnPoints;
+    public GameObject fruit;
+
+
+    float min=0.2f, max=2f;
+
+
+
+    private void Start()
     {
-        
+        StartCoroutine(SpawnFruits());
+    }
+    IEnumerator SpawnFruits()
+    {
+
+        while (true)
+        {
+            float delay = Random.Range(min, max);
+            yield return new WaitForSeconds(2);
+
+
+
+
+
+
+        }
+
+
     }
 }
